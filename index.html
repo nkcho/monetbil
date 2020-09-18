@@ -1,0 +1,46 @@
+<!doctype html>
+
+<html>
+<meta charset="utf-8">
+
+<button>Pay by Mobile Money</button>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+	
+	$(document).ready(function(){
+		
+		$("button").on('click', startCall);
+		
+		function startCall(){
+			//const base_url = `http://localhost/tuto/momo/api/api_v1/Momo/get_signal/Ninio`;
+			const base_url = `https://payments.miya.academy/api_v1/`;
+			
+			const data = {
+			  "phonenumber": 675731671,
+			  "amount": 100,
+			}
+			const url = `https://api.monetbil.com/widget/v2.1/zTMk60wMi2QHbz7XwfYJSwxe3xY4VwDf`;
+			
+			$.ajax({
+				data,
+				type: "POST",
+				url,
+				success: function(res){
+					console.log({url, res});
+					
+					if(res.success){
+						window.location.href = res.payment_url;
+						alert("Please continue");
+					}else{
+						alert('Something went wrong, please tretry!');
+					}
+					
+				}
+			});
+		
+		}
+	});
+	
+</script>
+</html>
